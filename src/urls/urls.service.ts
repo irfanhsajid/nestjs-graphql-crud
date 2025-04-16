@@ -77,4 +77,17 @@ export class UrlsService {
     }
     return result;
   }
+
+  //find all the urls
+  async findAll(): Promise<UrlModel[]> {
+    const urls = await this.urlModel.find().exec();
+    console.log(urls, '>>>>>>>>>>>>..');
+    return urls.map((url) => ({
+      id: url.id,
+      originalUrl: url.originalUrl,
+      shortCode: url.shortCode,
+      clicks: url.clicks,
+      createdAt: url.createdAt,
+    }));
+  }
 }
