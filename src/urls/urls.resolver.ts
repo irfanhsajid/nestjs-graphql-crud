@@ -21,4 +21,9 @@ export class UrlsResolver {
   async redirectUrl(@Args('shortCode') shortCode: string): Promise<Url> {
     return this.urlsService.incrementClicks(shortCode);
   }
+
+  @Query(() => [Url])
+  async getAllUrls(): Promise<Url[]> {
+    return this.urlsService.findAll();
+  }
 }
