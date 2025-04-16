@@ -23,7 +23,9 @@ export class UrlsResolver {
   }
 
   @Query(() => [Url])
+  // eslint-disable-next-line @typescript-eslint/require-await
   async getAllUrls(): Promise<Url[]> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
     return this.urlsService.findAll();
   }
 }

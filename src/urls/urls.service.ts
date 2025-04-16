@@ -81,7 +81,6 @@ export class UrlsService {
   //find all the urls
   async findAll(): Promise<UrlModel[]> {
     const urls = await this.urlModel.find().exec();
-    console.log(urls, '>>>>>>>>>>>>..');
     return urls.map((url) => ({
       id: url.id,
       originalUrl: url.originalUrl,
