@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
@@ -20,7 +19,8 @@ import { UrlsModule } from './urls/urls.module';
     ExampleModule,
     UrlsModule, // Import the new module
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController], //like waiter taking orders, defines request response
+  providers: [AppService], //chef making foods, handles actual business logic
 })
 export class AppModule {}
+//imports means connecting other modules

@@ -2,6 +2,8 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateUrlInput } from './dto/create-url.input';
 import { Url } from './models/url.model';
 import { UrlsService } from './urls.service';
+import { UpdateUrlInput } from './dto/update-url.input';
+import { DeleteUrlResponse } from './dto/delete-url-response.output';
 
 @Resolver(() => Url)
 export class UrlsResolver {
@@ -12,20 +14,28 @@ export class UrlsResolver {
     return this.urlsService.create(input);
   }
 
+  @Query(() => [Url])
+  async getAllUrls(): Promise<Url[]> {
+    return this.urlsService.findAll();
+  }
+
   @Query(() => Url)
   async getUrl(@Args('shortCode') shortCode: string): Promise<Url> {
     return this.urlsService.findByShortCode(shortCode);
   }
 
   @Mutation(() => Url)
-  async redirectUrl(@Args('shortCode') shortCode: string): Promise<Url> {
+  async redirectUrlByClick(@Args('shortCode') shortCode: string): Promise<Url> {
     return this.urlsService.incrementClicks(shortCode);
   }
 
-  @Query(() => [Url])
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async getAllUrls(): Promise<Url[]> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-    return this.urlsService.findAll();
+  @Mutation(() => Url)
+  async updateUrlDetails(@Args('input') input: UpdateUrlInput): Promise<Url> {
+    return this.urlsService.updateUrl(input);
+  }
+
+  @Mutation(() => DeleteUrlResponse)
+  async deleteUrl(@Args('id') id: string): Promise<DeleteUrlResponse> {
+    return this.urlsService.deleteById(id);
   }
 }
