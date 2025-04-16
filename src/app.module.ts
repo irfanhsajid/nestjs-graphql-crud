@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ExampleModule } from './example/example.module';
+import { UrlsModule } from './urls/urls.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { ExampleModule } from './example/example.module';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql', // Automatically generates schema file
     }),
-    ExampleModule, // Import the new module
+    ExampleModule,
+    UrlsModule, // Import the new module
   ],
   controllers: [AppController],
   providers: [AppService],

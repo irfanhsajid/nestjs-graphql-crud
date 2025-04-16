@@ -2,6 +2,30 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Url {
+  id: String!
+  originalUrl: String!
+  shortCode: String!
+  clicks: Int!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   sayHello: String!
+  getUrl(shortCode: String!): Url!
+}
+
+type Mutation {
+  createUrl(input: CreateUrlInput!): Url!
+  redirectUrl(shortCode: String!): Url!
+}
+
+input CreateUrlInput {
+  originalUrl: String!
+  customShortCode: String
 }
