@@ -37,9 +37,3 @@ input CreateUrlInput {
   originalUrl: String!
   customShortCode: String
 }
-
-input UpdateUrlInput {
-  shortCode: String!
-  originalUrl: String
-  newShortCode: String
-}
